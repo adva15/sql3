@@ -1,0 +1,42 @@
+.1 מהו ממוצע ציוני המכללה עבור כל שנה. רמז: year_exam by group ?
+SELECT AVG(grade) grade,exam_year 
+FROM grades 
+GROUP BY exam_year;
+
+.2 מהו ממוצע הציונים, לכל תלמיד בנפרד, עבור שנת 2024 ?
+SELECT AVG(grade) AS grade,exam_year,student_name
+FROM grades 
+WHERE exam_year = 2024
+GROUP BY student_name;
+
+
+.3 הצג עבור כל שנה, מה היה הציון הגבוה ביותר בכל נושא ? מה הכי נמוך ?
+הגבוה ביותר:
+SELECT max(grade) AS grade,exam_year,subject_name
+FROM grades 
+GROUP BY exam_year,subject_name;
+
+הכי נמוך:
+SELECT min(grade) AS grade,exam_year,subject_name
+FROM grades 
+GROUP BY exam_year,subject_name;
+
+
+.4 עבור כל שנה, כמה מבחנים נעשו עבור כל מקצוע ?
+SELECT count(grade) AS grade,exam_year,subject_name
+FROM grades 
+GROUP BY exam_year,subject_name;
+
+
+.5 מה היו המקצועות בהם ממוצע הציונים הוא מעל 85 )לכל אורך השנים , לא כל שנה בנפרד?
+SELECT AVG(grade) AS grade,subject_name
+FROM grades 
+WHERE grade > 85
+GROUP BY subject_name;
+
+
+.6 כמה מופעים היה לכל ציון מעל 90 ?
+SELECT count(grade) AS count,grade
+FROM grades 
+WHERE grade > 90
+GROUP BY grade;
